@@ -1,0 +1,24 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1>Welcome to BabyBoutique</h1>
+    <p>Discover adorable baby outfits, accessories, and essentials — made with love.</p>
+    <%= link_to "Shop Now", products_path, class: "btn-primary" %>
+  </div>
+</section>
+
+<section class="featured">
+  <h2>Featured Products</h2>
+  <div class="product-grid">
+    <% @products.take(4).each do |product| %>
+      <div class="product-card">
+        <% if product.images.attached? %>
+          <%= image_tag url_for(product.images.first), class: "product-img" %>
+        <% else %>
+          <%= image_tag "placeholder.jpg", class: "product-img" %>
+        <% end %>
+        <h3><%= product.title %></h3>
+        <p><%= number_to_currency(product.price) %></p>
+      </div>
+    <% end %>
+  </div>
+</section>

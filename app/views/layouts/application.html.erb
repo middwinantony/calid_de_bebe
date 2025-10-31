@@ -10,8 +10,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body style="background-color:#f8f9fa; font-family: 'Inter', sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 30px 0;">
+  <body>
+  <%# style="background-color:#f8f9fa; font-family: 'Inter', sans-serif;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 30px 0;"> %>
+      <%= render "shared/navbar" %>
       <%= yield %>
     </div>
   </body>
