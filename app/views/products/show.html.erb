@@ -1,0 +1,22 @@
+<h1><%= @product.title %></h1>
+<p><%= @product.description %></p>
+<p>Price: $<%= @product.price %></p>
+<p>Size: <%= @product.size %></p>
+<p>Brand: <%= @product.brand %></p>
+<p>Condition: <%= @product.condition %></p>
+<p>Location: <%= @product.location %></p>
+<p>Status: <%= @product.status %></p>
+<p>Category: <%= @product.category.name %></p>
+
+<% @product.images.each do |image| %>
+  <%= image_tag image.variant(resize_to_limit: [300, 300]) %>
+<% end %>
+
+<% if user_signed_in? && current_user.role == "seller" && @product.user == current_user %>
+  <%= link_to "Edit", edit_product_path(@product) %> |
+  <%= link_to "Delete", product_path(@product), method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
+
+<% if user_signed_in? && current_user.role == "buyer" %>
+  <%= button_to "Add to Cart", product_order_items_path(@product), method: :post %>
+<% end %>

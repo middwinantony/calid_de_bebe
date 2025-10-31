@@ -1,0 +1,11 @@
+<h1>Order #<%= @order.id %></h1>
+<p>Status: <%= @order.status %></p>
+<p>Shipping Address: <%= @order.shipping_address.street %>, <%= @order.shipping_address.city %></p>
+
+<h2>Items</h2>
+<% @order.order_items.each do |item| %>
+  <p>
+    <%= item.product.title %> - Quantity: <%= item.quantity %> - Price: $<%= item.price %>
+    <%= link_to "Remove", order_order_item_path(@order, item), method: :delete %>
+  </p>
+<% end %>

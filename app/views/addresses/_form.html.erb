@@ -1,0 +1,21 @@
+<%= form_with(model: @address, local: true) do |form| %>
+  <%= form.label :street %>
+  <%= form.text_field :street %>
+
+  <%= form.label :city %>
+  <%= form.text_field :city %>
+
+  <%= form.label :province %>
+  <%= form.text_field :province %>
+
+  <%= form.label :postal_code %>
+  <%= form.text_field :postal_code %>
+
+  <%= form.label :country %>
+  <%= form.text_field :country %>
+
+  <%= form.label :address_type %>
+  <%= form.select :address_type, ["shipping", "billing"] %>
+
+  <%= form.submit %>
+<% end %>

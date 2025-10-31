@@ -1,0 +1,88 @@
+<%# <h1>New Product</h1>
+
+<%= form_with(model: @product, local: true, html: { multipart: true }) do |form| %>
+  <%# <%= form.label :title %>
+  <%# <%= form.text_field :title %>
+
+  <%# <%= form.label :description %>
+  <%# <%= form.text_area :description %>
+
+  <%# <%= form.label :price %>
+  <%# <%= form.number_field :price %>
+
+  <%# <%= form.label :size %>
+  <%# <%= form.text_field :size %>
+
+  <%# <%= form.label :brand %>
+  <%# <%= form.text_field :brand %>
+
+  <%# <%= form.label :condition %>
+  <%# <%= form.text_field :condition %>
+
+  <%# <%= form.label :location %>
+  <%# <%= form.text_field :location %>
+
+  <%# <%= form.label :status %>
+  <%# <%= form.select :status, ["available", "sold", "reserved"] %>
+
+  <%# <%= form.label :category_id, "Category" %>
+  <%# <%= form.collection_select :category_id, Category.all, :id, :name %>
+
+  <%# <%= form.label :images %>
+  <%# <%= form.file_field :images, multiple: true %>
+
+  <%# <%= form.submit "Create Product" %>
+<%# <% end %>
+
+<h1 style="text-align: center; margin-bottom: 30px; color:#0984e3;">➕ Add New Baby Product</h1>
+
+<div style="max-width: 600px; margin: 0 auto; background:white; padding: 30px; border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+  <%= form_with(model: @product, local: true, html: { multipart: true }) do |form| %>
+
+    <% if @product.errors.any? %>
+      <div style="background:#ffe6e6; border:1px solid #ff7675; padding:10px; border-radius:8px; margin-bottom:15px;">
+        <h3 style="color:#d63031;"><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h3>
+        <ul style="margin:0; padding-left:20px;">
+          <% @product.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div style="margin-bottom: 15px;">
+      <%= form.label :title, style: "font-weight:600;" %>
+      <%= form.text_field :title, style: "width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;" %>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <%= form.label :description, style: "font-weight:600;" %>
+      <%= form.text_area :description, rows: 4, style: "width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;" %>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <%= form.label :price, style: "font-weight:600;" %>
+      <%= form.number_field :price, step: 0.01, style: "width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;" %>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <%= form.label :condition, style: "font-weight:600;" %>
+      <%= form.select :condition, ["like new", "gently used", "used"], prompt: "Select condition", style: "width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;" %>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <%= form.label :category_id, "Category", style: "font-weight:600;" %>
+      <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Select category", style: "width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;" %>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <%= form.label :images, "Upload Product Images", style: "font-weight:600;" %>
+      <%= form.file_field :images, multiple: true, direct_upload: true, style: "width:100%;" %>
+    </div>
+
+    <div style="text-align: center;">
+      <%= form.submit "Create Product", style: "background-color:#74b9ff; color:white; font-weight:600; padding:10px 20px; border:none; border-radius:8px; cursor:pointer;" %>
+    </div>
+
+  <% end %>
+</div>

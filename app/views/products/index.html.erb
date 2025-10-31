@@ -1,0 +1,36 @@
+<% @products.each do |product| %>
+  <div style="border: 1px solid #eee; border-radius: 15px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.1); background:white; transition: transform 0.2s ease; position: relative;">
+
+    <!-- Delete button for seller -->
+    <% if user_signed_in? && current_user.role == "seller" && current_user == product.user %>
+      <div style="position:absolute; top:10px; right:10px;">
+        <%= link_to "🗑️", product_path(product), method: :delete, data: { confirm: "Are you sure you want to delete this product?" }, style: "color:#d63031; font-size:1.2rem; text-decoration:none;" %>
+      </div>
+    <% end %>
+
+    <div style="position: relative; overflow: hidden;">
+      <% if product.images.attached? %>
+        <%= image_tag url_for(product.images.first), style: "width:100%; height:220px; object-fit:cover;" %>
+      <% else %>
+        <%= image_tag 'https://via.placeholder.com/220x220?text=No+Image', style: "width:100%; height:220px; object-fit:cover;" %>
+      <% end %>
+    </div>
+
+    <div style="padding: 15px;">
+      <h3 style="margin: 0 0 5px; font-size: 1.1rem; color:#2d3436;">
+        <%= link_to product.title, product_path(product), style: "text-decoration:none; color:#0984e3; font-weight:600;" %>
+      </h3>
+      <p style="margin: 0; font-size: 0.95rem; color:#636e72;"><strong>Price:</strong> $<%= product.price %></p>
+      <p style="margin: 0; font-size: 0.9rem; color:#636e72;"><strong>Condition:</strong> <%= product.condition %></p>
+      <% if product.category %>
+        <p style="margin: 0 0 8px; font-size: 0.9rem; color:#636e72;"><strong>Category:</strong> <%= product.category.name %></p>
+      <% end %>
+
+      <% if user_signed_in? && current_user.role == "buyer" %>
+        <%= button_to "🛒 Add to Cart", product_order_items_path(product), method: :post,
+              class: "btn btn-success",
+              style: "background-color:#55efc4; border:none; color:#2d3436; font-weight:600; width:100%; padding:8px; border-radius:6px;" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
