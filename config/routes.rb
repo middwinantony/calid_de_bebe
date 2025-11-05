@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'categories/index'
+  get 'categories/show'
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -19,4 +21,5 @@ Rails.application.routes.draw do
   end
 
   resources :addresses
+  resources :categories, only: [:index, :show]
 end

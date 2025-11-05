@@ -22,3 +22,14 @@
     <% end %>
   </div>
 </section>
+<div class="col-md-3">
+  <h6>Shop by Category</h6>
+  <% Category.all.each do |category| %>
+    <p><%= link_to category.name, category_path(category) %></p>
+  <% end %>
+</div>
+<div class="col-md-3">
+  <h6>Customer Policies</h6>
+  <p><%= link_to "Returns", "#" %></p>
+  <p><%= link_to "Shipping", "#" %></p>
+</div>
